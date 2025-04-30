@@ -1,6 +1,6 @@
 require "json"
 
-package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+package = JSON.parse(File.read(File.join(__dir__, 'package.json')))
 
 Pod::Spec.new do |s|
   s.name         = "react-native-amap3d"
@@ -13,8 +13,20 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "10.0" }
   s.source       = { :git => "https://github.com/qiuxiang/react-native-amap3d.git", :tag => "#{s.version}" }
 
-  s.source_files = "lib/ios/**/*.{h,m,mm,swift}"
 
+  s.resource_bundles = {
+    'react-native-amap3d' => ['lib/ios/Assets/**/*.*']
+  }
   s.dependency "React-Core"
-  s.dependency 'AMap3DMap', "~> 9.6.0"
+#  s.dependency 'AMapNavi'
+  
+  case ENV['type']
+  when 'overseas'
+    s.dependency 'GoogleMaps'
+    s.source_files = "lib/ios/GoogleMaps/**/*"
+  else
+    s.dependency 'AMapLibrary/AmapNav'
+    s.source_files = "lib/ios/AMap/**/*"
+  end
+  
 end

@@ -13,8 +13,20 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "10.0" }
   s.source       = { :git => "https://github.com/qiuxiang/react-native-amap3d.git", :tag => "#{s.version}" }
 
-  s.source_files = "**/*.{h,m,mm,swift}"
 
+  s.resource_bundles = {
+    'react-native-amap3d' => ['Assets/**/*.*']
+  }
   s.dependency "React-Core"
-  s.dependency 'AMap3DMap', "~> 9.6.0"
+#  s.dependency 'AMapNavi'
+  
+  case ENV['type']
+  when 'overseas'
+    s.dependency 'GoogleMaps'
+    s.source_files = "GoogleMaps/**/*"
+  else
+    s.dependency 'AMapLibrary/AmapNav'
+    s.source_files = "AMap/**/*"
+  end
+  
 end

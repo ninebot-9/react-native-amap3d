@@ -88,9 +88,7 @@ class MapView(context: ThemedReactContext) : TextureMapView(context) {
     }
 
     map.setOnMyLocationChangeListener {
-      if (it.time > 0) {
-        emit(id, "onLocation", it.toJson())
-      }
+      emit(id, "onLocation", it.toJson())
     }
   }
 
@@ -156,8 +154,7 @@ class MapView(context: ThemedReactContext) : TextureMapView(context) {
     when (args.getString(1)) {
       "getLatLng" -> callback(
         id,
-        // @todo 暂时兼容 0.63
-        @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
+        // 兼容 0.63
         map.projection.fromScreenLocation(args.getMap(2)!!.toPoint()).toJson()
       )
     }

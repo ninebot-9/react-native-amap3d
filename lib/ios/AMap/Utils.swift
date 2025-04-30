@@ -1,3 +1,4 @@
+@_exported import AMapNaviKit
 extension NSDictionary {
   var coordinate: CLLocationCoordinate2D {
     CLLocationCoordinate2DMake(self["latitude"] as! Double, self["longitude"] as! Double)
@@ -73,7 +74,7 @@ extension Double {
 
 extension RCTConvert {
   @objc static func MAMapType(_ json: Any) -> MAMapType {
-    MAMapKit.MAMapType(rawValue: json as! NSInteger)!
+    AMapNaviKit.MAMapType(rawValue: json as! NSInteger)!
   }
 }
 
@@ -101,4 +102,19 @@ extension RCTImageLoader {
       }
     )
   }
+}
+class BundleClass {
+}
+
+public extension Bundle {
+    static func currentBundle() -> Bundle? {
+        if let bundlePath = Bundle(for: BundleClass.self).resourcePath?.appending("/react-native-amap3d.bundle") {
+            let bundle = Bundle(path: bundlePath)
+            return bundle
+        }
+        return nil
+    }
+    
+
+
 }

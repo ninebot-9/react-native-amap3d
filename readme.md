@@ -1,6 +1,6 @@
 # react-native-amap3d [![][version-badge]][npm] [![](https://github.com/qiuxiang/react-native-amap3d/actions/workflows/build.yml/badge.svg)](https://github.com/qiuxiang/react-native-amap3d/actions/workflows/build.yml)
 
-**注意：该项目目前只维护，不加新功能。**
+**注意：该项目现在正在进行新版（v3）重构，接口重新设计且部分重新实现。**
 
 react-native 高德地图组件，使用最新 3D SDK，支持 Android + iOS，受 [react-native-maps](https://github.com/airbnb/react-native-maps) 启发，提供功能丰富且易用的接口。
 
@@ -25,10 +25,6 @@ react-native 高德地图组件，使用最新 3D SDK，支持 Android + iOS，�
 - 海量点（MultiPoint）
 - 点聚合（Cluster）
 
-## 接口文档
-
-https://qiuxiang.github.io/react-native-amap3d/api/
-
 ## 安装
 
 ```bash
@@ -46,9 +42,8 @@ npm i react-native-amap3d
 
 ```js
 import { AMapSdk } from "react-native-amap3d";
-import { Platform } from "react-native";
 
-AMapSdk.init(
+AMapSdk.setApiKey(
   Platform.select({
     android: "c52c7169e6df23490e3114330098aaac",
     ios: "186d3464209b74effa4d8391f441f14d",
@@ -80,7 +75,7 @@ import { MapView, MapType } from "react-native-amap3d";
 ### 监听地图事件
 
 ```jsx
-import { MapView } from "react-native-amap3d";
+import { MapView } from "react-native-baidumap-sdk";
 
 <MapView
   onLoad={() => console.log("onLoad")}
@@ -98,7 +93,7 @@ import { MapView } from "react-native-amap3d";
 同时支持 `children` 作为标记图标。
 
 ```jsx
-import { MapView, Marker } from "react-native-amap3d";
+import { MapView, Marker } from "react-native-baidumap-sdk";
 
 <MapView>
   <Marker
@@ -174,7 +169,20 @@ const markers = Array(1000)
 
 ### 更多示例
 
-参考 [example](https://github.com/qiuxiang/react-native-amap3d/tree/master/example-app)。
+参考 [example](https://github.com/qiuxiang/react-native-amap3d/tree/master/example)。
+
+#### Android
+
+```bash
+npm run android
+```
+
+#### iOS
+
+```bash
+cd ios && pod install && cd ..
+npm run ios
+```
 
 ## 常见问题
 

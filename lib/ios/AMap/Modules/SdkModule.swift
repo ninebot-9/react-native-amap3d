@@ -4,10 +4,8 @@ class AMapSdk: NSObject {
     false
   }
 
-  @objc func initSDK(_ apiKey: String) {
+  @objc func setApiKey(_ apiKey: String) {
     AMapServices.shared().apiKey = apiKey
-    MAMapView.updatePrivacyAgree(AMapPrivacyAgreeStatus.didAgree)
-    MAMapView.updatePrivacyShow(AMapPrivacyShowStatus.didShow, privacyInfo: AMapPrivacyInfoStatus.didContain)
   }
 
   @objc func getVersion(_ resolve: RCTPromiseResolveBlock, reject _: RCTPromiseRejectBlock) {

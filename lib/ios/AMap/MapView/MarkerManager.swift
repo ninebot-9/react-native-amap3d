@@ -42,9 +42,17 @@ class Marker: UIView {
       self.updateCenterOffset()
     }
   }
-
+    
+    
   @objc func setLatLng(_ coordinate: CLLocationCoordinate2D) {
     annotation.coordinate = coordinate
+  }
+  @objc func setTrueHeading(_ trueHeading: CGFloat) {
+      UIView.animate(withDuration: 0.1) {
+          let degree = trueHeading
+          self.view?.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(degree * Double.pi / 180))
+      }
+      
   }
 
   @objc func setCenterOffset(_ centerOffset: CGPoint) {
